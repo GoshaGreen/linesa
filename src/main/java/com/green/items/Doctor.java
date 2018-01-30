@@ -1,27 +1,29 @@
 package com.green.items;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Gosha on 030 30.01.18.
  */
 @Entity
+@Table(name = "doctor")
 public class Doctor {
     @Id
     @GeneratedValue
     int idDoctor;
+    @OneToMany(mappedBy = "doctor")
+    private List<Visit> visits;
 
-    String FirstName;
+    private String FirstName;
 
-    String MiddleName;
+    private String MiddleName;
 
-    String LastName;
+    private  String LastName;
 
-    String Degree;
+    private String Degree;
 
-    String Position;
+    private String Position;
 
     public Doctor(){
 
@@ -85,5 +87,13 @@ public class Doctor {
 
     public void setPosition(String position) {
         Position = position;
+    }
+
+    public List<Visit> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(List<Visit> visits) {
+        this.visits = visits;
     }
 }

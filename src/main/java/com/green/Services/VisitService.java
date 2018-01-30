@@ -23,6 +23,7 @@ public class VisitService {
     @Transactional
     @PostConstruct
     public void init() {
+        visitRepository.save(new Visit());
     }
 
     public boolean create(Visit visit){

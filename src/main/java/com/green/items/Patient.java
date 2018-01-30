@@ -1,27 +1,29 @@
 package com.green.items;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 
 /**
  * Created by Gosha on 030 30.01.18.
  */
 @Entity
+@Table(name = "patient")
 public class Patient {
     @Id
     @GeneratedValue
     int idPatient;
+    @OneToMany(mappedBy = "patient")
+    private List<Visit> visits;
 
-    String firstName;
+    private String firstName;
 
-    String middleName;
+    private  String middleName;
 
-    String lastName;
+    private String lastName;
 
-    Date birthDate;
+    private Date birthDate;
 
     public Patient() {
     }
@@ -45,6 +47,14 @@ public class Patient {
                 ", lastName='" + lastName + '\'' +
                 ", birthDate=" + birthDate +
                 '}';
+    }
+
+    public List<Visit> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(List<Visit> visits) {
+        this.visits = visits;
     }
 
     public int getIdPatient() {

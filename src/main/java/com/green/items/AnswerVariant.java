@@ -1,18 +1,21 @@
 package com.green.items;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Gosha on 030 30.01.18.
  */
 @Entity
+@Table(name = "answer_variant")
 public class AnswerVariant {
     @Id
     @GeneratedValue
     int idAnswerVariant;
-    String Variant;
+    @ManyToOne
+    @JoinColumn(name="id_question")
+    private Question question;
+
+    private String Variant;
 
     public AnswerVariant() {
     }

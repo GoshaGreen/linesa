@@ -22,6 +22,7 @@ public class AnswerVariantService {
     @Transactional
     @PostConstruct
     public void init() {
+        answerVariantRepository.save(new AnswerVariant());
     }
 
     public boolean create(AnswerVariant answerVariant){

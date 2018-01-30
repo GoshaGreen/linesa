@@ -20,6 +20,7 @@ public class DoctorService {
     @Transactional
     @PostConstruct
     public void init(){
+
     }
     public List<Doctor> findAll() {return doctorRepository.findAll(); }
 

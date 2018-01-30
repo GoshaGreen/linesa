@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2018-01-30.15:05:58.474</IntrospectionTimestamp>
-      <IntrospectionStateNumber>568</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-01-30.19:51:08.596</IntrospectionTimestamp>
+      <IntrospectionStateNumber>670</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -34,118 +34,244 @@
       <StateNumber>559</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
     </sequence>
-    <table id="10" parent="3" name="doctor">
-      <ObjectId>32768</ObjectId>
-      <StateNumber>564</StateNumber>
+    <table id="10" parent="3" name="answer_variant">
+      <ObjectId>32849</ObjectId>
+      <StateNumber>649</StateNumber>
     </table>
-    <table id="11" parent="3" name="item">
-      <ObjectId>24585</ObjectId>
-      <StateNumber>560</StateNumber>
+    <table id="11" parent="3" name="doctor">
+      <ObjectId>32768</ObjectId>
+      <StateNumber>650</StateNumber>
     </table>
     <table id="12" parent="3" name="patient">
       <ObjectId>32776</ObjectId>
-      <StateNumber>568</StateNumber>
+      <StateNumber>656</StateNumber>
     </table>
-    <column id="13" parent="10" name="id_doctor">
+    <table id="13" parent="3" name="question">
+      <ObjectId>32854</ObjectId>
+      <StateNumber>670</StateNumber>
+    </table>
+    <table id="14" parent="3" name="question_type">
+      <ObjectId>32884</ObjectId>
+      <StateNumber>670</StateNumber>
+    </table>
+    <table id="15" parent="3" name="visit">
+      <ObjectId>32864</ObjectId>
+      <StateNumber>656</StateNumber>
+    </table>
+    <column id="16" parent="10" name="id_answer_variant">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>645</StateNumber>
+    </column>
+    <column id="17" parent="10" name="variant">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>645</StateNumber>
+    </column>
+    <column id="18" parent="10" name="id_question">
+      <Position>3</Position>
+      <DataType>integer|0</DataType>
+      <StateNumber>645</StateNumber>
+    </column>
+    <index id="19" parent="10" name="answer_variant_pkey">
+      <ObjectId>32852</ObjectId>
+      <ColNames>id_answer_variant</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="20" parent="10" name="answer_variant_pkey">
+      <ObjectId>32853</ObjectId>
+      <ColNames>id_answer_variant</ColNames>
+      <UnderlyingIndexName>answer_variant_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="21" parent="10" name="fkkdcbvecl4adasvfqcqtkg5d29">
+      <ObjectId>32869</ObjectId>
+      <ColNames>id_question</ColNames>
+      <RefTableName>question</RefTableName>
+      <RefKeyName>question_pkey</RefKeyName>
+      <RefColNames>id_question</RefColNames>
+    </foreign-key>
+    <column id="22" parent="11" name="id_doctor">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>564</StateNumber>
     </column>
-    <column id="14" parent="10" name="degree">
+    <column id="23" parent="11" name="degree">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <StateNumber>564</StateNumber>
     </column>
-    <column id="15" parent="10" name="first_name">
+    <column id="24" parent="11" name="first_name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <StateNumber>564</StateNumber>
     </column>
-    <column id="16" parent="10" name="last_name">
+    <column id="25" parent="11" name="last_name">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <StateNumber>564</StateNumber>
     </column>
-    <column id="17" parent="10" name="middle_name">
+    <column id="26" parent="11" name="middle_name">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
       <StateNumber>564</StateNumber>
     </column>
-    <column id="18" parent="10" name="position">
+    <column id="27" parent="11" name="position">
       <Position>6</Position>
       <DataType>varchar(255)|0</DataType>
       <StateNumber>564</StateNumber>
     </column>
-    <index id="19" parent="10" name="doctor_pkey">
+    <index id="28" parent="11" name="doctor_pkey">
       <ObjectId>32774</ObjectId>
       <ColNames>id_doctor</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="20" parent="10" name="doctor_pkey">
+    <key id="29" parent="11" name="doctor_pkey">
       <ObjectId>32775</ObjectId>
       <ColNames>id_doctor</ColNames>
       <UnderlyingIndexName>doctor_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="21" parent="11" name="id">
-      <Position>1</Position>
-      <DataType>integer|0</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>560</StateNumber>
-    </column>
-    <column id="22" parent="11" name="name">
-      <Position>2</Position>
-      <DataType>varchar(255)|0</DataType>
-      <StateNumber>560</StateNumber>
-    </column>
-    <index id="23" parent="11" name="item_pkey">
-      <ObjectId>24588</ObjectId>
-      <ColNames>id</ColNames>
-      <Unique>1</Unique>
-    </index>
-    <key id="24" parent="11" name="item_pkey">
-      <ObjectId>24589</ObjectId>
-      <ColNames>id</ColNames>
-      <UnderlyingIndexName>item_pkey</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <column id="25" parent="12" name="id_patient">
+    <column id="30" parent="12" name="id_patient">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>568</StateNumber>
     </column>
-    <column id="26" parent="12" name="birth_date">
+    <column id="31" parent="12" name="birth_date">
       <Position>2</Position>
       <DataType>date|0</DataType>
       <StateNumber>568</StateNumber>
     </column>
-    <column id="27" parent="12" name="first_name">
+    <column id="32" parent="12" name="first_name">
       <Position>3</Position>
       <DataType>varchar(255)|0</DataType>
       <StateNumber>568</StateNumber>
     </column>
-    <column id="28" parent="12" name="last_name">
+    <column id="33" parent="12" name="last_name">
       <Position>4</Position>
       <DataType>varchar(255)|0</DataType>
       <StateNumber>568</StateNumber>
     </column>
-    <column id="29" parent="12" name="middle_name">
+    <column id="34" parent="12" name="middle_name">
       <Position>5</Position>
       <DataType>varchar(255)|0</DataType>
       <StateNumber>568</StateNumber>
     </column>
-    <index id="30" parent="12" name="patient_pkey">
+    <index id="35" parent="12" name="patient_pkey">
       <ObjectId>32782</ObjectId>
       <ColNames>id_patient</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="31" parent="12" name="patient_pkey">
+    <key id="36" parent="12" name="patient_pkey">
       <ObjectId>32783</ObjectId>
       <ColNames>id_patient</ColNames>
       <UnderlyingIndexName>patient_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
+    <column id="37" parent="13" name="id_question">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>646</StateNumber>
+    </column>
+    <column id="38" parent="13" name="question_text">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>646</StateNumber>
+    </column>
+    <column id="39" parent="13" name="id_question_type">
+      <Position>3</Position>
+      <DataType>integer|0</DataType>
+      <StateNumber>668</StateNumber>
+    </column>
+    <index id="40" parent="13" name="question_pkey">
+      <ObjectId>32857</ObjectId>
+      <ColNames>id_question</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="41" parent="13" name="question_pkey">
+      <ObjectId>32858</ObjectId>
+      <ColNames>id_question</ColNames>
+      <UnderlyingIndexName>question_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="42" parent="13" name="fktkm7u55eckvrhdk5brohrouxm">
+      <ObjectId>32889</ObjectId>
+      <ColNames>id_question_type</ColNames>
+      <RefTableName>question_type</RefTableName>
+      <RefKeyName>question_type_pkey</RefKeyName>
+      <RefColNames>id_question_type</RefColNames>
+    </foreign-key>
+    <column id="43" parent="14" name="id_question_type">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>669</StateNumber>
+    </column>
+    <column id="44" parent="14" name="type">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>669</StateNumber>
+    </column>
+    <index id="45" parent="14" name="question_type_pkey">
+      <ObjectId>32887</ObjectId>
+      <ColNames>id_question_type</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="46" parent="14" name="question_type_pkey">
+      <ObjectId>32888</ObjectId>
+      <ColNames>id_question_type</ColNames>
+      <UnderlyingIndexName>question_type_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="47" parent="15" name="id_visit">
+      <Position>1</Position>
+      <DataType>integer|0</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>648</StateNumber>
+    </column>
+    <column id="48" parent="15" name="text">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <StateNumber>648</StateNumber>
+    </column>
+    <column id="49" parent="15" name="id_doctor">
+      <Position>3</Position>
+      <DataType>integer|0</DataType>
+      <StateNumber>648</StateNumber>
+    </column>
+    <column id="50" parent="15" name="id_patient">
+      <Position>4</Position>
+      <DataType>integer|0</DataType>
+      <StateNumber>655</StateNumber>
+    </column>
+    <index id="51" parent="15" name="visit_pkey">
+      <ObjectId>32867</ObjectId>
+      <ColNames>id_visit</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="52" parent="15" name="visit_pkey">
+      <ObjectId>32868</ObjectId>
+      <ColNames>id_visit</ColNames>
+      <UnderlyingIndexName>visit_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="53" parent="15" name="fkbqep846oev3680c4sdauai9y8">
+      <ObjectId>32874</ObjectId>
+      <ColNames>id_doctor</ColNames>
+      <RefTableName>doctor</RefTableName>
+      <RefKeyName>doctor_pkey</RefKeyName>
+      <RefColNames>id_doctor</RefColNames>
+    </foreign-key>
+    <foreign-key id="54" parent="15" name="fk2vjakr9oeteslcyka86vkql8h">
+      <ObjectId>32879</ObjectId>
+      <ColNames>id_patient</ColNames>
+      <RefTableName>patient</RefTableName>
+      <RefKeyName>patient_pkey</RefKeyName>
+      <RefColNames>id_patient</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

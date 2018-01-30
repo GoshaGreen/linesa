@@ -1,17 +1,23 @@
 package com.green.items;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by Gosha on 030 30.01.18.
  */
+@Entity
+@Table(name = "visit")
 public class Visit {
     @Id
     @GeneratedValue
     int idVisit;
-    Doctor doctor;
-    Patient patient;
+    @ManyToOne
+    @JoinColumn(name="id_doctor")
+    private Doctor doctor;
+    @ManyToOne
+    @JoinColumn(name="id_patient")
+    private Patient patient;
+
     String text;
 
     public Visit() {

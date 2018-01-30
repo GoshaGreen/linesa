@@ -23,6 +23,7 @@ public class QuestionTypeService {
     @Transactional
     @PostConstruct
     public void init() {
+        questionTypeRepository.save(new QuestionType());
     }
 
     public boolean create(QuestionType questionType){
