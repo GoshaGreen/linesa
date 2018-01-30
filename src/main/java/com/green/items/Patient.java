@@ -11,7 +11,6 @@ import java.sql.Date;
  */
 @Entity
 public class Patient {
-
     @Id
     @GeneratedValue
     int idPatient;
