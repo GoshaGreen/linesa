@@ -21,12 +21,40 @@ public class PatientService {
     @Transactional
     @PostConstruct
     public void init() {
-        patientRepository.save(new Patient("PatientA"));
-        patientRepository.save(new Patient("PatientB"));
-        patientRepository.save(new Patient("PatientC"));
+    }
+
+    public boolean create(Patient patient){
+        patientRepository.save(patient);
+        patientRepository.flush();
+        return true;
     }
 
     public List<Patient> findAll() {
         return patientRepository.findAll();
     }
+
+    public Patient getOne(int id){
+        return patientRepository.getOne(id);
+    }
+
+    public Patient findById (int id){
+        List<Patient> patients = patientRepository.findAll();
+        for (Patient patient: patients) {if(patient.getIdPatient()==id){
+            System.out.println(patient.toString2());
+            return patient;}
+        }
+        return null;
+    }
+
+    public void deleteById(int id){
+        List<Patient> patients = patientRepository.findAll();
+        for (Patient patient: patients) {if(patient.getIdPatient()==id){patientRepository.delete(id);}
+        }
+    }
+
+    public void editPatient(int id, String name){
+        findById(id).setMiddleName(name);
+        patientRepository.flush();
+    }
+
 }

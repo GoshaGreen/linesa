@@ -20,9 +20,6 @@ public class DoctorService {
     @Transactional
     @PostConstruct
     public void init(){
-        doctorRepository.save(new Doctor( "DoctorA"));
-        doctorRepository.save(new Doctor("DoctorB"));
-        doctorRepository.save(new Doctor("DoctorC"));
     }
     public List<Doctor> findAll() {return doctorRepository.findAll(); }
 

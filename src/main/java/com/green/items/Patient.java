@@ -38,6 +38,16 @@ public class Patient {
         this.firstName = firstName;
     }
 
+    public String toString2() {
+        return "Patient{" +
+                "idPatient=" + idPatient +
+                ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDate=" + birthDate +
+                '}';
+    }
+
     public int getIdPatient() {
         return idPatient;
     }
