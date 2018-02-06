@@ -1,4 +1,4 @@
-package com.green.items;
+package com.green.item;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -13,7 +13,7 @@ import java.util.List;
 public class Patient {
     @Id
     @GeneratedValue
-    int idPatient;
+    private int idPatient;
     @OneToMany(mappedBy = "patient")
     private List<Visit> visits;
 
@@ -28,33 +28,12 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(String firstName, String middleName, String lastName, Date birthDate) {
+    public Patient(List<Visit> visits, String firstName, String middleName, String lastName, Date birthDate) {
+        this.visits = visits;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
         this.birthDate = birthDate;
-    }
-
-    public Patient(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String toString2() {
-        return "Patient{" +
-                "idPatient=" + idPatient +
-                ", firstName='" + firstName + '\'' +
-                ", middleName='" + middleName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthDate=" + birthDate +
-                '}';
-    }
-
-    public List<Visit> getVisits() {
-        return visits;
-    }
-
-    public void setVisits(List<Visit> visits) {
-        this.visits = visits;
     }
 
     public int getIdPatient() {
@@ -63,6 +42,14 @@ public class Patient {
 
     public void setIdPatient(int idPatient) {
         this.idPatient = idPatient;
+    }
+
+    public List<Visit> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(List<Visit> visits) {
+        this.visits = visits;
     }
 
     public String getFirstName() {

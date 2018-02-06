@@ -40,7 +40,6 @@ public class PatientService {
     public Patient findById (int id){
         List<Patient> patients = patientRepository.findAll();
         for (Patient patient: patients) {if(patient.getIdPatient()==id){
-            System.out.println(patient.toString2());
             return patient;}
         }
         return null;
@@ -52,9 +51,9 @@ public class PatientService {
         }
     }
 
-    public void editPatient(int id, String name){
-        findById(id).setMiddleName(name);
+    public void editPatient(Patient patient){
+        this.deleteById(patient.getIdPatient());
+        patientRepository.save(patient);
         patientRepository.flush();
     }
-
 }

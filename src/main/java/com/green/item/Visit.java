@@ -1,4 +1,4 @@
-package com.green.items;
+package com.green.item;
 
 import javax.persistence.*;
 
@@ -10,10 +10,12 @@ import javax.persistence.*;
 public class Visit {
     @Id
     @GeneratedValue
-    int idVisit;
+    private int idVisit;
+
     @ManyToOne
     @JoinColumn(name="id_doctor")
     private Doctor doctor;
+
     @ManyToOne
     @JoinColumn(name="id_patient")
     private Patient patient;
@@ -23,7 +25,9 @@ public class Visit {
     public Visit() {
     }
 
-    public Visit(String text) {
+    public Visit(Doctor doctor, Patient patient, String text) {
+        this.doctor = doctor;
+        this.patient = patient;
         this.text = text;
     }
 

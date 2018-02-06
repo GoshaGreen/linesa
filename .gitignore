@@ -1,0 +1,7 @@
+# Intellij IDEA
+/.idea/
+/*.iml
+/lib
+
+# App configuration
+/src/main/resources/application.properties

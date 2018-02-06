@@ -1,4 +1,4 @@
-package com.green.items;
+package com.green.item;
 
 import javax.persistence.*;
 
@@ -10,7 +10,8 @@ import javax.persistence.*;
 public class AnswerVariant {
     @Id
     @GeneratedValue
-    int idAnswerVariant;
+    private int idAnswerVariant;
+
     @ManyToOne
     @JoinColumn(name="id_question")
     private Question question;
@@ -20,7 +21,8 @@ public class AnswerVariant {
     public AnswerVariant() {
     }
 
-    public AnswerVariant(String variant) {
+    public AnswerVariant(Question question, String variant) {
+        this.question = question;
         Variant = variant;
     }
 
@@ -30,6 +32,14 @@ public class AnswerVariant {
 
     public void setIdAnswerVariant(int idAnswerVariant) {
         this.idAnswerVariant = idAnswerVariant;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
     public String getVariant() {

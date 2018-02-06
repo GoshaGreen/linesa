@@ -1,10 +1,8 @@
-package com.green.Services;
+package com.green.service;
 
 
-import com.green.items.Question;
-import com.green.items.Visit;
-import com.green.repositories.QuestionRepository;
-import com.green.repositories.VisitRepository;
+import com.green.item.Visit;
+import com.green.repositorie.VisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,8 +53,9 @@ public class VisitService {
         }
     }
 
-    public void editVisit(int id, String text){
-        findById(id).setText(text);
+    public void editVisit(Visit visit){
+        this.deleteById(visit.getIdVisit());
+        visitRepository.save(visit);
         visitRepository.flush();
     }
 

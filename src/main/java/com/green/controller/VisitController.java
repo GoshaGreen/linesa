@@ -1,9 +1,7 @@
-package com.green.controllers;
+package com.green.controller;
 
-import com.green.Services.QuestionService;
-import com.green.Services.VisitService;
-import com.green.items.Question;
-import com.green.items.Visit;
+import com.green.service.VisitService;
+import com.green.item.Visit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,15 +16,15 @@ public class VisitController {
     VisitService visitService;
 
     @GetMapping("/Visits")
-    public List<Visit> patients(){return visitService.findAll();}
+    public List<Visit> visits(){return visitService.findAll();}
 
     @RequestMapping(method = RequestMethod.GET, value = "/Visit")
     public Visit visit(@RequestParam(value="id") int id){
         return visitService.findById(id);}
 
     @RequestMapping(method = RequestMethod.POST, value = "/Visit")
-    public void createVisit(@RequestParam(value="text") String text){
-        visitService.create(new Visit(text));
+    public void createVisit(@RequestParam(value="visit") Visit visit){
+        visitService.create(visit);
     }
 
     @RequestMapping(method=RequestMethod.DELETE, value = "/Visit")
@@ -35,8 +33,8 @@ public class VisitController {
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/Visit")
-    public void editVisit(@RequestParam(value="id") int id,@RequestParam(value="text") String name){
-        visitService.editVisit(id,name);
+    public void editVisit(@RequestParam(value="visit") Visit visit){
+        visitService.editVisit(visit);
     }
 
 }

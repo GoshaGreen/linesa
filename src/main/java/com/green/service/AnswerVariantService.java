@@ -2,7 +2,6 @@ package com.green.Services;
 
 
 import com.green.items.AnswerVariant;
-import com.green.items.Patient;
 import com.green.repositories.AnswerVariantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,9 +53,13 @@ public class AnswerVariantService {
         }
     }
 
-    public void editAnswerVariant(int id, String text){
-        findById(id).setVariant(text);
+    public void editAnswerVariant(AnswerVariant answerVariant){
+        this.deleteById(answerVariant.getIdAnswerVariant());
+        answerVariantRepository.save(answerVariant);
         answerVariantRepository.flush();
     }
 
+    public List<AnswerVariant> findForQuestion(int id){
+        return this.findAll();
+    }
 }

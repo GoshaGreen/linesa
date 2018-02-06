@@ -1,4 +1,4 @@
-package com.green.items;
+package com.green.item;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 public class Doctor {
     @Id
     @GeneratedValue
-    int idDoctor;
+    private int idDoctor;
     @OneToMany(mappedBy = "doctor")
     private List<Visit> visits;
 
@@ -37,16 +37,20 @@ public class Doctor {
         Position = position;
     }
 
-    public Doctor(String firstName) {
-        FirstName = firstName;
-    }
-
     public int getIdDoctor() {
         return idDoctor;
     }
 
     public void setIdDoctor(int idDoctor) {
         this.idDoctor = idDoctor;
+    }
+
+    public List<Visit> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(List<Visit> visits) {
+        this.visits = visits;
     }
 
     public String getFirstName() {
@@ -87,13 +91,5 @@ public class Doctor {
 
     public void setPosition(String position) {
         Position = position;
-    }
-
-    public List<Visit> getVisits() {
-        return visits;
-    }
-
-    public void setVisits(List<Visit> visits) {
-        this.visits = visits;
     }
 }

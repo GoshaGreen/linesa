@@ -1,27 +1,25 @@
 package com.green.items;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.List;
 
 /**
  * Created by Gosha on 030 30.01.18.
  */
 @Entity
-@Table(name = "question")
 public class Question {
     @Id
     @GeneratedValue
     int idQuestion;
+    @OneToMany(mappedBy = "Question")
+    QuestionType questionType;
+    @OneToMany(mappedBy = "Question")
+    List<AnswerVariant> answerVariantList;
 
-    @ManyToOne
-    @JoinColumn(name="id_question_type")
-    private QuestionType questionType;
-
-    @OneToMany(mappedBy = "question")
-    private List<AnswerVariant> answerVariantList;
-
-
-    private String questionText;
+    String questionText;
 
     public Question() {
     }
@@ -38,20 +36,20 @@ public class Question {
         this.idQuestion = idQuestion;
     }
 
-    public List<AnswerVariant> getAnswerVariantList() {
-        return answerVariantList;
-    }
-
-    public void setAnswerVariantList(List<AnswerVariant> answerVariantList) {
-        this.answerVariantList = answerVariantList;
-    }
-
     public QuestionType getQuestionType() {
         return questionType;
     }
 
     public void setQuestionType(QuestionType questionType) {
         this.questionType = questionType;
+    }
+
+    public List<AnswerVariant> getAnswerVariantList() {
+        return answerVariantList;
+    }
+
+    public void setAnswerVariantList(List<AnswerVariant> answerVariantList) {
+        this.answerVariantList = answerVariantList;
     }
 
     public String getQuestionText() {

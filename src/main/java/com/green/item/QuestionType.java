@@ -1,4 +1,4 @@
-package com.green.items;
+package com.green.item;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,7 +11,8 @@ import java.util.List;
 public class QuestionType {
     @Id
     @GeneratedValue
-    int idQuestionType;
+    private int idQuestionType;
+
     private String type;
 
     @OneToMany(mappedBy = "questionType")
@@ -20,16 +21,17 @@ public class QuestionType {
     public QuestionType() {
     }
 
-    public QuestionType(String type) {
+    public QuestionType(String type, List<Question> questionList) {
         this.type = type;
+        this.questionList = questionList;
     }
 
-    public int getId() {
+    public int getIdQuestionType() {
         return idQuestionType;
     }
 
-    public void setId(int id) {
-        this.idQuestionType = id;
+    public void setIdQuestionType(int idQuestionType) {
+        this.idQuestionType = idQuestionType;
     }
 
     public String getType() {
@@ -40,4 +42,12 @@ public class QuestionType {
         this.type = type;
     }
 
+    public List<Question> getQuestionList() {
+        return questionList;
+    }
+
+    public void setQuestionList(List<Question> questionList) {
+        this.questionList = questionList;
+    }
 }
+
