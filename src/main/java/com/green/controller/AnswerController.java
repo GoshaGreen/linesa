@@ -1,38 +1,46 @@
 package com.green.controller;
 
-import com.green.service.AnswerService;
 import com.green.item.Answer;
+import com.green.service.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
- * Created by Gosha on 001 01.02.18.
+ * Created by Gosha on 016 16.02.18.
  */
 @RestController
+@RequestMapping(value="/Answer")
 public class AnswerController {
-
     @Autowired
-    AnswerService answerService;
+    private AnswerService answerService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/Answer")
-    public Answer answer(@RequestParam(value="id") int id){
-        return answerService.findById(id);}
-
-    @RequestMapping(method = RequestMethod.POST, value = "/Answer")
-    public void createAnswer(@RequestParam(value="answer") Answer answer){
-        answerService.create(answer);
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Answer> answer(){
+        return answerService.findAll();
     }
 
-    @RequestMapping(method=RequestMethod.DELETE, value = "/Answer")
-    public void deleteAnswer(@RequestParam(value="id") int id){
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, value="/{id}")
+    public Answer answerid(@PathVariable("id") int id){
+        return answerService.findById(id);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST)
+    public Answer createAnswer(@RequestBody Answer answer){
+        return answerService.create(answer);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method=RequestMethod.DELETE, value = "/{id}")
+    public void deleteAnswer(@PathVariable("id") int id){
         answerService.deleteById(id);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/Answer")
-    public void editAnswer(@RequestParam(value="answer") Answer answer){
-        answerService.editAnswer(answer);
-    }
+    @CrossOrigin
+    @RequestMapping(method=RequestMethod.PUT)
+    public Answer updateAnswer(@RequestBody Answer answer){return answerService.editAnswer(answer);}
 }

@@ -7,23 +7,21 @@ import java.util.List;
  * Created by Gosha on 030 30.01.18.
  */
 @Entity
-@Table(name="question_type")
+@Table(name="question_types")
 public class QuestionType {
     @Id
     @GeneratedValue
     private int idQuestionType;
 
+    @OneToMany(mappedBy = "questionType")
+    private List<Question> questions;
+
     private String type;
 
-    @OneToMany(mappedBy = "questionType")
-    private List<Question> questionList;
+/*    @OneToMany(mappedBy = "questionType")
+    private List<Question> questionList;*/
 
     public QuestionType() {
-    }
-
-    public QuestionType(String type, List<Question> questionList) {
-        this.type = type;
-        this.questionList = questionList;
     }
 
     public int getIdQuestionType() {
@@ -34,20 +32,20 @@ public class QuestionType {
         this.idQuestionType = idQuestionType;
     }
 
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public List<Question> getQuestionList() {
-        return questionList;
-    }
-
-    public void setQuestionList(List<Question> questionList) {
-        this.questionList = questionList;
     }
 }
 

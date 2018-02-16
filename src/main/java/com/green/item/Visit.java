@@ -1,12 +1,13 @@
 package com.green.item;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Gosha on 030 30.01.18.
  */
 @Entity
-@Table(name = "visit")
+@Table(name = "visits")
 public class Visit {
     @Id
     @GeneratedValue
@@ -20,15 +21,14 @@ public class Visit {
     @JoinColumn(name="id_patient")
     private Patient patient;
 
-    String text;
+    @ManyToOne
+    @JoinColumn(name = "id_questionnaire")
+    private Questionnaire questionnaire;
+
+    @OneToMany(mappedBy = "visit")
+    private List<Response> responses;
 
     public Visit() {
-    }
-
-    public Visit(Doctor doctor, Patient patient, String text) {
-        this.doctor = doctor;
-        this.patient = patient;
-        this.text = text;
     }
 
     public int getIdVisit() {
@@ -55,11 +55,19 @@ public class Visit {
         this.patient = patient;
     }
 
-    public String getText() {
-        return text;
+    public Questionnaire getQuestionnaire() {
+        return questionnaire;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setQuestionnaire(Questionnaire questionnaire) {
+        this.questionnaire = questionnaire;
+    }
+
+    public List<Response> getResponses() {
+        return responses;
+    }
+
+    public void setResponses(List<Response> responses) {
+        this.responses = responses;
     }
 }

@@ -1,4 +1,4 @@
-package com.green.repositorie;
+package com.green.repository;
 
 import com.green.item.QuestionType;
 import org.springframework.data.jpa.repository.JpaRepository;

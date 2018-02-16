@@ -1,40 +1,46 @@
 package com.green.controller;
 
-import com.green.service.QuestionService;
 import com.green.item.Question;
+import com.green.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
- * Created by Gosha on 030 30.01.18.
+ * Created by Gosha on 016 16.02.18.
  */
 @RestController
+@RequestMapping(value="/Question")
 public class QuestionController {
     @Autowired
-    QuestionService questionService;
+    private QuestionService questionService;
 
-    @GetMapping("/Questions")
-    public List<Question> questions(){return questionService.findAll();}
-
-    @RequestMapping(method = RequestMethod.GET, value = "/Question")
-    public Question question(@RequestParam(value="id") int id){
-        return questionService.findById(id);}
-
-    @RequestMapping(method = RequestMethod.POST, value = "/Question")
-    public void createQuestion(@RequestParam(value="question") Question question){
-        questionService.create(question);
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Question> question(){
+        return questionService.findAll();
     }
 
-    @RequestMapping(method=RequestMethod.DELETE, value = "/Question")
-    public void deleteQuestion(@RequestParam(value="id") int id){
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, value="/{id}")
+    public Question questionid(@PathVariable("id") int id){
+        return questionService.findById(id);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST)
+    public Question createQuestion(@RequestBody Question question){
+        return questionService.create(question);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method=RequestMethod.DELETE, value = "/{id}")
+    public void deleteQuestion(@PathVariable("id") int id){
         questionService.deleteById(id);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/Question")
-    public void editQuestion(@RequestParam(value="question") Question question){
-        questionService.editQuestion(question);
-    }
-
+    @CrossOrigin
+    @RequestMapping(method=RequestMethod.PUT)
+    public Question updateQuestion(@RequestBody Question question){return questionService.editQuestion(question);}
 }

@@ -2,7 +2,7 @@ package com.green.service;
 
 
 import com.green.item.Answer;
-import com.green.repositorie.AnswerRepository;
+import com.green.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,10 +24,8 @@ public class AnswerService {
         answerRepository.save(new Answer());
     }
 
-    public boolean create(Answer answer){
-        answerRepository.save(answer);
-        answerRepository.flush();
-        return true;
+    public Answer create(Answer answer){
+        return answerRepository.save(answer);
     }
 
     public List<Answer> findAll() {
@@ -47,15 +45,10 @@ public class AnswerService {
     }
 
     public void deleteById(int id){
-        List<Answer> answers = answerRepository.findAll();
-        for (Answer answer: answers) {if(answer.getIdAnswer()==id){
-            answerRepository.delete(id);}
-        }
+        answerRepository.delete(id);
     }
 
-    public void editAnswer(Answer answer){
-        this.deleteById(answer.getIdAnswer());
-        answerRepository.save(answer);
-        answerRepository.flush();
+    public Answer editAnswer(Answer answer){
+        return answerRepository.save(answer);
     }
 }

@@ -1,40 +1,46 @@
 package com.green.controller;
 
-import com.green.service.VisitService;
 import com.green.item.Visit;
+import com.green.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
- * Created by Gosha on 030 30.01.18.
+ * Created by Gosha on 016 16.02.18.
  */
 @RestController
+@RequestMapping(value="/Visit")
 public class VisitController {
     @Autowired
-    VisitService visitService;
+    private VisitService visitService;
 
-    @GetMapping("/Visits")
-    public List<Visit> visits(){return visitService.findAll();}
-
-    @RequestMapping(method = RequestMethod.GET, value = "/Visit")
-    public Visit visit(@RequestParam(value="id") int id){
-        return visitService.findById(id);}
-
-    @RequestMapping(method = RequestMethod.POST, value = "/Visit")
-    public void createVisit(@RequestParam(value="visit") Visit visit){
-        visitService.create(visit);
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Visit> visit(){
+        return visitService.findAll();
     }
 
-    @RequestMapping(method=RequestMethod.DELETE, value = "/Visit")
-    public void deleteVisit(@RequestParam(value="id") int id){
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, value="/{id}")
+    public Visit visitid(@PathVariable("id") int id){
+        return visitService.findById(id);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST)
+    public Visit createVisit(@RequestBody Visit visit){
+        return visitService.create(visit);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method=RequestMethod.DELETE, value = "/{id}")
+    public void deleteVisit(@PathVariable("id") int id){
         visitService.deleteById(id);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/Visit")
-    public void editVisit(@RequestParam(value="visit") Visit visit){
-        visitService.editVisit(visit);
-    }
-
+    @CrossOrigin
+    @RequestMapping(method=RequestMethod.PUT)
+    public Visit updateVisit(@RequestBody Visit visit){return visitService.editVisit(visit);}
 }

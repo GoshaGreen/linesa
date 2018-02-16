@@ -1,8 +1,8 @@
-package com.green.Services;
+package com.green.service;
 
 
-import com.green.items.QuestionType;
-import com.green.repositories.QuestionTypeRepository;
+import com.green.item.QuestionType;
+import com.green.repository.QuestionTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,10 +24,8 @@ public class QuestionTypeService {
         questionTypeRepository.save(new QuestionType());
     }
 
-    public boolean create(QuestionType questionType){
-        questionTypeRepository.save(questionType);
-        questionTypeRepository.flush();
-        return true;
+    public QuestionType create(QuestionType questionType){
+        return questionTypeRepository.save(questionType);
     }
 
     public List<QuestionType> findAll() {
@@ -47,15 +45,10 @@ public class QuestionTypeService {
     }
 
     public void deleteById(int id){
-        List<QuestionType> questionTypes = questionTypeRepository.findAll();
-        for (QuestionType questionType: questionTypes) {if(questionType.getIdQuestionType()==id){
-            questionTypeRepository.delete(id);}
-        }
+        questionTypeRepository.delete(id);
     }
 
-    public void editQuestionType(QuestionType questionType){
-        this.deleteById(questionType.getIdQuestionType());
-        questionTypeRepository.save(questionType);
-        questionTypeRepository.flush();
+    public QuestionType editQuestionType(QuestionType questionType){
+        return questionTypeRepository.save(questionType);
     }
 }

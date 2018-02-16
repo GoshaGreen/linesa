@@ -2,7 +2,7 @@ package com.green.service;
 
 
 import com.green.item.Visit;
-import com.green.repositorie.VisitRepository;
+import com.green.repository.VisitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,10 +24,8 @@ public class VisitService {
         visitRepository.save(new Visit());
     }
 
-    public boolean create(Visit visit){
-        visitRepository.save(visit);
-        visitRepository.flush();
-        return true;
+    public Visit create(Visit visit){
+        return visitRepository.save(visit);
     }
 
     public List<Visit> findAll() {
@@ -47,16 +45,10 @@ public class VisitService {
     }
 
     public void deleteById(int id){
-        List<Visit> visits = visitRepository.findAll();
-        for (Visit visit: visits) {if(visit.getIdVisit()==id){
-            visitRepository.delete(id);}
-        }
+        visitRepository.delete(id);
     }
 
-    public void editVisit(Visit visit){
-        this.deleteById(visit.getIdVisit());
-        visitRepository.save(visit);
-        visitRepository.flush();
+    public Visit editVisit(Visit visit){
+        return visitRepository.save(visit);
     }
-
 }

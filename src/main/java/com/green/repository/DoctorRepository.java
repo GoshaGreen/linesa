@@ -1,6 +1,6 @@
-package com.green.repositories;
+package com.green.repository;
 
-import com.green.items.Doctor;
+import com.green.item.Doctor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

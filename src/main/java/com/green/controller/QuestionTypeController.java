@@ -1,40 +1,46 @@
 package com.green.controller;
 
-import com.green.service.QuestionTypeService;
 import com.green.item.QuestionType;
+import com.green.service.QuestionTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
- * Created by Gosha on 030 30.01.18.
+ * Created by Gosha on 016 16.02.18.
  */
 @RestController
+@RequestMapping(value="/QuestionType")
 public class QuestionTypeController {
     @Autowired
-    QuestionTypeService questionTypeService;
+    private QuestionTypeService questionTypeService;
 
-    @GetMapping("/QuestionTypes")
-    public List<QuestionType> questionTypes(){return questionTypeService.findAll();}
-
-    @RequestMapping(method = RequestMethod.GET, value = "/QuestionType")
-    public QuestionType questionType(@RequestParam(value="id") int id){
-        return questionTypeService.findById(id);}
-
-    @RequestMapping(method = RequestMethod.POST, value = "/QuestionType")
-    public void createQuestionType(@RequestParam(value="questionType") QuestionType questionType){
-        questionTypeService.create(questionType);
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET)
+    public List<QuestionType> questionType(){
+        return questionTypeService.findAll();
     }
 
-    @RequestMapping(method=RequestMethod.DELETE, value = "/QuestionType")
-    public void deleteQuestionType(@RequestParam(value="id") int id){
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, value="/{id}")
+    public QuestionType questionTypeid(@PathVariable("id") int id){
+        return questionTypeService.findById(id);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST)
+    public QuestionType createQuestionType(@RequestBody QuestionType questionType){
+        return questionTypeService.create(questionType);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method=RequestMethod.DELETE, value = "/{id}")
+    public void deleteQuestionType(@PathVariable("id") int id){
         questionTypeService.deleteById(id);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/QuestionType")
-    public void editQuestionType(@RequestParam(value="questionType") QuestionType questionType){
-        questionTypeService.editQuestionType(questionType);
-    }
-
+    @CrossOrigin
+    @RequestMapping(method=RequestMethod.PUT)
+    public QuestionType updateQuestionType(@RequestBody QuestionType questionType){return questionTypeService.editQuestionType(questionType);}
 }

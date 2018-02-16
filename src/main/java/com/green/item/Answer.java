@@ -1,31 +1,31 @@
 package com.green.item;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
- * Created by Gosha on 001 01.02.18.
+ * Created by Gosha on 030 30.01.18.
  */
 @Entity
-@Table(name = "answer")
+@Table(name = "answers")
 public class Answer {
     @Id
     @GeneratedValue
     private int idAnswer;
 
     @ManyToOne
-    @JoinColumn(name="id_visit")
-    private Visit visit;
-
-    @ManyToOne
-    @JoinColumn(name="id_question")
+    @JoinColumn(name = "id_question")
     private Question question;
 
-    public Answer() {
-    }
+    @OneToMany(mappedBy = "answer")
+    private List<Response> responses;
 
-    public Answer(Visit visit, Question question) {
-        this.visit = visit;
-        this.question = question;
+    @OneToMany(mappedBy = "activatingVariant")
+    private List<Question> questions;
+
+    private String Variant;
+
+    public Answer() {
     }
 
     public int getIdAnswer() {
@@ -36,19 +36,35 @@ public class Answer {
         this.idAnswer = idAnswer;
     }
 
-    public Visit getVisit() {
-        return visit;
-    }
-
-    public void setVisit(Visit visit) {
-        this.visit = visit;
-    }
-
     public Question getQuestion() {
         return question;
     }
 
     public void setQuestion(Question question) {
         this.question = question;
+    }
+
+    public List<Response> getResponses() {
+        return responses;
+    }
+
+    public void setResponses(List<Response> responses) {
+        this.responses = responses;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
+    public String getVariant() {
+        return Variant;
+    }
+
+    public void setVariant(String variant) {
+        Variant = variant;
     }
 }

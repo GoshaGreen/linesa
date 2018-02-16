@@ -3,11 +3,12 @@ package com.green.item;
 import javax.persistence.*;
 import java.util.List;
 
+
 /**
  * Created by Gosha on 030 30.01.18.
  */
 @Entity
-@Table(name = "question")
+@Table(name = "questions")
 public class Question {
     @Id
     @GeneratedValue
@@ -17,18 +18,22 @@ public class Question {
     @JoinColumn(name="id_question_type")
     private QuestionType questionType;
 
+    @ManyToOne
+    @JoinColumn(name="id_question_block")
+    private QuestionBlock questionBlock;
+
+    @ManyToOne
+    @JoinColumn(name="id_answer")
+    private Answer activatingVariant;
+
     @OneToMany(mappedBy = "question")
-    private List<AnswerVariant> answerVariantList;
+    private List<Answer> answers;
 
     private String questionText;
 
-    public Question() {
-    }
+    private boolean mandatory;
 
-    public Question(QuestionType questionType, List<AnswerVariant> answerVariantList, String questionText) {
-        this.questionType = questionType;
-        this.answerVariantList = answerVariantList;
-        this.questionText = questionText;
+    public Question() {
     }
 
     public int getIdQuestion() {
@@ -47,12 +52,28 @@ public class Question {
         this.questionType = questionType;
     }
 
-    public List<AnswerVariant> getAnswerVariantList() {
-        return answerVariantList;
+    public QuestionBlock getQuestionBlock() {
+        return questionBlock;
     }
 
-    public void setAnswerVariantList(List<AnswerVariant> answerVariantList) {
-        this.answerVariantList = answerVariantList;
+    public void setQuestionBlock(QuestionBlock questionBlock) {
+        this.questionBlock = questionBlock;
+    }
+
+    public Answer getActivatingVariant() {
+        return activatingVariant;
+    }
+
+    public void setActivatingVariant(Answer activatingVariant) {
+        this.activatingVariant = activatingVariant;
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
 
     public String getQuestionText() {
@@ -61,5 +82,13 @@ public class Question {
 
     public void setQuestionText(String questionText) {
         this.questionText = questionText;
+    }
+
+    public boolean isMandatory() {
+        return mandatory;
+    }
+
+    public void setMandatory(boolean mandatory) {
+        this.mandatory = mandatory;
     }
 }

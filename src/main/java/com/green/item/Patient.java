@@ -4,16 +4,16 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
-
 /**
  * Created by Gosha on 030 30.01.18.
  */
 @Entity
-@Table(name = "patient")
+@Table(name = "patients")
 public class Patient {
     @Id
     @GeneratedValue
     private int idPatient;
+
     @OneToMany(mappedBy = "patient")
     private List<Visit> visits;
 
@@ -26,14 +26,6 @@ public class Patient {
     private Date birthDate;
 
     public Patient() {
-    }
-
-    public Patient(List<Visit> visits, String firstName, String middleName, String lastName, Date birthDate) {
-        this.visits = visits;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
     }
 
     public int getIdPatient() {

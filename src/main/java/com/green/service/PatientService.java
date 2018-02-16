@@ -1,8 +1,8 @@
-package com.green.Services;
+package com.green.service;
 
 
-import com.green.items.Patient;
-import com.green.repositories.PatientRepository;
+import com.green.item.Patient;
+import com.green.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,12 +21,11 @@ public class PatientService {
     @Transactional
     @PostConstruct
     public void init() {
+        patientRepository.save(new Patient());
     }
 
-    public boolean create(Patient patient){
-        patientRepository.save(patient);
-        patientRepository.flush();
-        return true;
+    public Patient create(Patient patient){
+        return patientRepository.save(patient);
     }
 
     public List<Patient> findAll() {
@@ -46,14 +45,10 @@ public class PatientService {
     }
 
     public void deleteById(int id){
-        List<Patient> patients = patientRepository.findAll();
-        for (Patient patient: patients) {if(patient.getIdPatient()==id){patientRepository.delete(id);}
-        }
+        patientRepository.delete(id);
     }
 
-    public void editPatient(Patient patient){
-        this.deleteById(patient.getIdPatient());
-        patientRepository.save(patient);
-        patientRepository.flush();
+    public Patient editPatient(Patient patient){
+        return patientRepository.save(patient);
     }
 }

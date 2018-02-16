@@ -1,40 +1,46 @@
 package com.green.controller;
 
-import com.green.service.PatientService;
 import com.green.item.Patient;
+import com.green.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
- * Created by Gosha on 030 30.01.18.
+ * Created by Gosha on 016 16.02.18.
  */
 @RestController
+@RequestMapping(value="/Patient")
 public class PatientController {
     @Autowired
-    PatientService patientService;
+    private PatientService patientService;
 
-    @GetMapping("/Patients")
-    public List<Patient> patients(){return patientService.findAll();}
-
-    @RequestMapping(method = RequestMethod.GET, value = "/Patient")
-    public Patient patient(@RequestParam(value="id") int id){
-        return patientService.findById(id);}
-
-    @RequestMapping(method = RequestMethod.POST, value = "/Patient")
-    public void createPatient(@RequestParam(value="patient") Patient patient){
-        patientService.create(patient);
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Patient> patient(){
+        return patientService.findAll();
     }
 
-    @RequestMapping(method=RequestMethod.DELETE, value = "/Patient")
-    public void deletePatient(@RequestParam(value="id") int id){
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, value="/{id}")
+    public Patient patientid(@PathVariable("id") int id){
+        return patientService.findById(id);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST)
+    public Patient createPatient(@RequestBody Patient patient){
+        return patientService.create(patient);
+    }
+
+    @CrossOrigin
+    @RequestMapping(method=RequestMethod.DELETE, value = "/{id}")
+    public void deletePatient(@PathVariable("id") int id){
         patientService.deleteById(id);
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/Patient")
-    public void editPatient(@RequestParam(value="patient") Patient patient){
-        patientService.editPatient(patient);
-    }
-
+    @CrossOrigin
+    @RequestMapping(method=RequestMethod.PUT)
+    public Patient updatePatient(@RequestBody Patient patient){return patientService.editPatient(patient);}
 }

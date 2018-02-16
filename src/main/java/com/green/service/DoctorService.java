@@ -1,7 +1,8 @@
-package com.green.Services;
+package com.green.service;
 
-import com.green.items.Doctor;
-import com.green.repositories.DoctorRepository;
+
+import com.green.item.Doctor;
+import com.green.repository.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +20,21 @@ public class DoctorService {
 
     @Transactional
     @PostConstruct
-    public void init(){
+    public void init() {
+        doctorRepository.save(new Doctor());
     }
 
-    public boolean create(Doctor doctor){
-        doctorRepository.save(doctor);
-        doctorRepository.flush();
-        return true;
+    public Doctor create(Doctor doctor){
+        return doctorRepository.save(doctor);
     }
 
-    public List<Doctor> findAll() {return doctorRepository.findAll(); }
+    public List<Doctor> findAll() {
+        return doctorRepository.findAll();
+    }
 
-    public Doctor getOne(int id){return doctorRepository.getOne(id);}
+    public Doctor getOne(int id){
+        return doctorRepository.getOne(id);
+    }
 
     public Doctor findById (int id){
         List<Doctor> doctors = doctorRepository.findAll();
@@ -41,15 +45,10 @@ public class DoctorService {
     }
 
     public void deleteById(int id){
-        List<Doctor> doctors = doctorRepository.findAll();
-        for (Doctor doctor: doctors) {if(doctor.getIdDoctor()==id){doctorRepository.delete(id);}
-        }
+        doctorRepository.delete(id);
     }
 
-    public void editDoctor(Doctor doctor){
-        this.deleteById(doctor.getIdDoctor());
-        doctorRepository.save(doctor);
-        doctorRepository.flush();
+    public Doctor editDoctor(Doctor doctor){
+        return doctorRepository.save(doctor);
     }
-
 }
