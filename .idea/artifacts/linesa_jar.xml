@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="linesa:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/linesa_jar</output-path>
-    <root id="archive" name="linesa.jar">
-      <element id="module-output" name="linesa" />
-    </root>
-  </artifact>
-</component>
