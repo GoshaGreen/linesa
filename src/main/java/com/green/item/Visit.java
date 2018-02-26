@@ -1,12 +1,16 @@
 package com.green.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.List;
 
 /**
  * Created by Gosha on 030 30.01.18.
  */
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "visits")
 public class Visit {
     @Id
@@ -25,10 +29,19 @@ public class Visit {
     @JoinColumn(name = "id_questionnaire")
     private Questionnaire questionnaire;
 
+/*
     @OneToMany(mappedBy = "visit")
     private List<Response> responses;
+*/
+
+    private Date date;
 
     public Visit() {
+    }
+
+    public String getMainDisease() {
+
+        return "DESIzE: REpair ThiZ MeZod";
     }
 
     public int getIdVisit() {
@@ -63,11 +76,21 @@ public class Visit {
         this.questionnaire = questionnaire;
     }
 
-    public List<Response> getResponses() {
+   /* public List<Response> getResponses() {
         return responses;
     }
 
     public void setResponses(List<Response> responses) {
         this.responses = responses;
+    }*/
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
+
+

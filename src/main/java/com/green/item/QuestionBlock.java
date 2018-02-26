@@ -1,5 +1,7 @@
 package com.green.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import java.util.List;
  * Created by Gosha on 015 15.02.18.
  */
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="question_blocks")
 public class QuestionBlock {
     @Id
@@ -25,6 +28,11 @@ public class QuestionBlock {
     public QuestionBlock() {
     }
 
+    public QuestionBlock(List<Question> questions, Questionnaire questionnaire, String questionBlockText) {
+/*      this.questionnaire = questionnaire;*/
+        this.questionBlockText = questionBlockText;
+    }
+
     public int getIdQuestionBlock() {
         return idQuestionBlock;
     }
@@ -33,21 +41,21 @@ public class QuestionBlock {
         this.idQuestionBlock = idQuestionBlock;
     }
 
-    public List<Question> getQuestions() {
+   /* public List<Question> getQuestions() {
         return questions;
     }
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
-    }
+    }*/
 
-    public Questionnaire getQuestionnaire() {
+   /* public Questionnaire getQuestionnaire() {
         return questionnaire;
     }
 
     public void setQuestionnaire(Questionnaire questionnaire) {
         this.questionnaire = questionnaire;
-    }
+    }*/
 
     public String getQuestionBlockText() {
         return questionBlockText;

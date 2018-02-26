@@ -21,7 +21,6 @@ public class QuestionTypeService {
     @Transactional
     @PostConstruct
     public void init() {
-        questionTypeRepository.save(new QuestionType());
     }
 
     public QuestionType create(QuestionType questionType){

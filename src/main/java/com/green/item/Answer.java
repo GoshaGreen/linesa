@@ -1,5 +1,7 @@
 package com.green.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import java.util.List;
  * Created by Gosha on 030 30.01.18.
  */
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "answers")
 public class Answer {
     @Id
@@ -17,15 +20,21 @@ public class Answer {
     @JoinColumn(name = "id_question")
     private Question question;
 
-    @OneToMany(mappedBy = "answer")
+/*    @OneToMany(mappedBy = "answer")
     private List<Response> responses;
 
     @OneToMany(mappedBy = "activatingVariant")
-    private List<Question> questions;
+    private List<Question> questions;*/
 
     private String Variant;
 
     public Answer() {
+    }
+
+    public Answer(List<Response> responses, List<Question> questions, String variant) {
+        /*this.responses = responses;
+        this.questions = questions;*/
+        Variant = variant;
     }
 
     public int getIdAnswer() {
@@ -44,7 +53,7 @@ public class Answer {
         this.question = question;
     }
 
-    public List<Response> getResponses() {
+    /*public List<Response> getResponses() {
         return responses;
     }
 
@@ -58,7 +67,7 @@ public class Answer {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
-    }
+    }*/
 
     public String getVariant() {
         return Variant;

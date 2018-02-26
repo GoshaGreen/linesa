@@ -1,11 +1,14 @@
 package com.green.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 /**
  * Created by Gosha on 001 01.02.18.
  */
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "responses")
 public class Response {
     @Id

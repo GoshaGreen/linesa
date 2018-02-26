@@ -21,7 +21,6 @@ public class QuestionnaireService {
     @Transactional
     @PostConstruct
     public void init() {
-        questionnaireRepository.save(new Questionnaire());
     }
 
     public Questionnaire create(Questionnaire questionnaire){

@@ -21,7 +21,6 @@ public class PatientService {
     @Transactional
     @PostConstruct
     public void init() {
-        patientRepository.save(new Patient());
     }
 
     public Patient create(Patient patient){

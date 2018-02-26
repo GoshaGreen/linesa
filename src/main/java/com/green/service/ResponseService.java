@@ -21,7 +21,6 @@ public class ResponseService {
     @Transactional
     @PostConstruct
     public void init() {
-        responseRepository.save(new Response());
     }
 
     public Response create(Response response){

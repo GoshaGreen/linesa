@@ -21,7 +21,7 @@ public class AnswerService {
     @Transactional
     @PostConstruct
     public void init() {
-        answerRepository.save(new Answer());
+
     }
 
     public Answer create(Answer answer){

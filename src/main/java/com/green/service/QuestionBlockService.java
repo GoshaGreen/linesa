@@ -21,7 +21,7 @@ public class QuestionBlockService {
     @Transactional
     @PostConstruct
     public void init() {
-        questionBlockRepository.save(new QuestionBlock());
+
     }
 
     public QuestionBlock create(QuestionBlock questionBlock){

@@ -25,7 +25,7 @@ public class AnswerController {
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value="/{id}")
     public Answer answerid(@PathVariable("id") int id){
-        return answerService.findById(id);
+        return answerService.getOne(id);
     }
 
     @CrossOrigin
