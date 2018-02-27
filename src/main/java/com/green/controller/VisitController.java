@@ -57,7 +57,7 @@ public class VisitController {
         }*/
         List<ShortVisit> zatuchka = new ArrayList<>();
         zatuchka.add(new ShortVisit(1, "Dr. Her V.S.", "Ivanov I.I.", "Didease diseasovich","20.02.2020" ));
-        zatuchka.add(new ShortVisit(2, "Dr. Her V.S.", "Ivanov I.I.", "Didease diseasovich","20.02.2020" ));
+        zatuchka.add(new ShortVisit(2, "Dr. 112 hgS.", "Ivanov I.I.", "Didease diseasovich","20.02.2020" ));
         zatuchka.add(new ShortVisit(3, "Dr. Her V.S.", "Ivanov I.I.", "Didease diseasovich","20.02.2020" ));
         zatuchka.add(new ShortVisit(4, "Dr. Her V.S.", "Ivanov I.I.", "Didease diseasovich","20.02.2020" ));
         zatuchka.add(new ShortVisit(5, "Dr. Her V.S.", "Ivanov I.I.", "Didease diseasovich","20.02.2020" ));

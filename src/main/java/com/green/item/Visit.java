@@ -29,10 +29,8 @@ public class Visit {
     @JoinColumn(name = "id_questionnaire")
     private Questionnaire questionnaire;
 
-/*
     @OneToMany(mappedBy = "visit")
     private List<Response> responses;
-*/
 
     private Date date;
 
@@ -76,13 +74,13 @@ public class Visit {
         this.questionnaire = questionnaire;
     }
 
-   /* public List<Response> getResponses() {
+    public List<Response> getResponses() {
         return responses;
     }
 
     public void setResponses(List<Response> responses) {
         this.responses = responses;
-    }*/
+    }
 
     public Date getDate() {
         return date;

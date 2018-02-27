@@ -66,4 +66,12 @@ public class ShortVisit {
     public void setDate(String date) {
         this.date = date;
     }
+
+    public String getMainDesease() {
+        return mainDesease;
+    }
+
+    public void setMainDesease(String mainDesease) {
+        this.mainDesease = mainDesease;
+    }
 }

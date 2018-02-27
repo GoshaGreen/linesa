@@ -1,5 +1,6 @@
 package com.green.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Question {
     @JoinColumn(name="id_question_type")
     private QuestionType questionType;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name="id_question_block")
     private QuestionBlock questionBlock;
@@ -29,8 +31,8 @@ public class Question {
     @JoinColumn(name="id_answer")
     private Answer activatingVariant;
 
-/*    @OneToMany(mappedBy = "question")
-    private List<Answer> answers;*/
+    @OneToMany(mappedBy = "question")
+    private List<Answer> answers;
 
     private String questionText;
 
@@ -72,13 +74,13 @@ public class Question {
         this.activatingVariant = activatingVariant;
     }
 
-    /*public List<Answer> getAnswers() {
+    public List<Answer> getAnswers() {
         return answers;
     }
 
     public void setAnswers(List<Answer> answers) {
         this.answers = answers;
-    }*/
+    }
 
     public String getQuestionText() {
         return questionText;

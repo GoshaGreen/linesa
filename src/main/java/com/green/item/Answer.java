@@ -1,5 +1,6 @@
 package com.green.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -16,15 +17,18 @@ public class Answer {
     @GeneratedValue
     private int idAnswer;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_question")
     private Question question;
 
-/*    @OneToMany(mappedBy = "answer")
+    @JsonIgnore
+    @OneToMany(mappedBy = "answer")
     private List<Response> responses;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "activatingVariant")
-    private List<Question> questions;*/
+    private List<Question> questions;
 
     private String Variant;
 
@@ -53,7 +57,7 @@ public class Answer {
         this.question = question;
     }
 
-    /*public List<Response> getResponses() {
+    public List<Response> getResponses() {
         return responses;
     }
 
@@ -67,7 +71,7 @@ public class Answer {
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
-    }*/
+    }
 
     public String getVariant() {
         return Variant;

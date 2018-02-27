@@ -25,8 +25,8 @@ public class QuestionnaireController {
     @CrossOrigin
     @RequestMapping(method = RequestMethod.GET, value="/{id}")
     public Questionnaire questionnaireid(@PathVariable("id") int id){
-        System.out.println(questionnaireService.findById(id).toOrdinaryString());
-        return questionnaireService.findById(id);
+        //System.out.println(questionnaireService.oneById(id).toOrdinaryString());
+        return questionnaireService.getOne(id);
     }
 
     @CrossOrigin

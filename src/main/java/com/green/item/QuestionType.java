@@ -1,5 +1,6 @@
 package com.green.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -16,8 +17,9 @@ public class QuestionType {
     @GeneratedValue
     private int idQuestionType;
 
-    /*@OneToMany(mappedBy = "questionType")
-    private List<Question> questions;*/
+    @OneToMany(mappedBy = "questionType")
+    @JsonIgnore
+    private List<Question> questions;
 
     private String type;
 
@@ -32,13 +34,13 @@ public class QuestionType {
         this.idQuestionType = idQuestionType;
     }
 
-/*    public List<Question> getQuestions() {
+    public List<Question> getQuestions() {
         return questions;
     }
 
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
-    }*/
+    }
 
     public String getType() {
         return type;

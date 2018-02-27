@@ -1,5 +1,6 @@
 package com.green.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -17,8 +18,9 @@ public class Doctor {
     @GeneratedValue
     private int idDoctor;
 
-    /*@OneToMany(mappedBy = "doctor")
-    private List<Visit> visits;*/
+    @OneToMany(mappedBy = "doctor")
+    @JsonIgnore
+    private List<Visit> visits;
 
     private String FirstName;
 
@@ -53,13 +55,13 @@ public class Doctor {
         this.idDoctor = idDoctor;
     }
 
-   /* public List<Visit> getVisits() {
+    public List<Visit> getVisits() {
         return visits;
     }
 
     public void setVisits(List<Visit> visits) {
         this.visits = visits;
-    }*/
+    }
 
     public String getFirstName() {
         return FirstName;

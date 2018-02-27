@@ -1,5 +1,6 @@
 package com.green.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -19,8 +20,9 @@ public class Questionnaire {
     @OneToMany(mappedBy = "questionnaire")
     private List<QuestionBlock> questionBlocks;
 
-/*    @OneToMany(mappedBy = "questionnaire")
-    private List<Visit> visits;*/
+    @JsonIgnore
+    @OneToMany(mappedBy = "questionnaire")
+    private List<Visit> visits;
 
     private String name;
 

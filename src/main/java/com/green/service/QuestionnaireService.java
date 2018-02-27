@@ -31,6 +31,10 @@ public class QuestionnaireService {
         return questionnaireRepository.findAll();
     }
 
+    public Questionnaire oneById(int id){
+        return questionnaireRepository.SelectSmth(2).get(0);
+    }
+
     public Questionnaire getOne(int id){
         return questionnaireRepository.getOne(id);
     }

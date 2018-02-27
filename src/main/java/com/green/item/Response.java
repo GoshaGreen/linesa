@@ -1,5 +1,6 @@
 package com.green.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -20,6 +21,7 @@ public class Response {
     private Answer answer;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="id_visit")
     private Visit visit;
 
