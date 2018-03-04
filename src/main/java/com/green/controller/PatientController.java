@@ -42,5 +42,6 @@ public class PatientController {
 
     @CrossOrigin
     @RequestMapping(method=RequestMethod.PUT)
-    public Patient updatePatient(@RequestBody Patient patient){return patientService.editPatient(patient);}
+    public Patient updatePatient(@RequestBody Patient patient){
+        return patientService.editPatient(patient);}
 }

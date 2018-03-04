@@ -29,8 +29,15 @@ public class ResponseController {
     }
 
     @CrossOrigin
+    @RequestMapping(method = RequestMethod.POST, value="/{id}")
+    public Response createResponseWI(@RequestBody Response response, @PathVariable("id") int id){
+        response.setVisitID(id);
+        return responseService.create(response);
+    }
+
+    @CrossOrigin
     @RequestMapping(method = RequestMethod.POST)
-    public Response createResponse(@RequestBody Response response){
+    public Response createResponse(@RequestBody Response response) {
         return responseService.create(response);
     }
 
@@ -43,4 +50,10 @@ public class ResponseController {
     @CrossOrigin
     @RequestMapping(method=RequestMethod.PUT)
     public Response updateResponse(@RequestBody Response response){return responseService.editResponse(response);}
+
+    @CrossOrigin
+    @RequestMapping(method = RequestMethod.GET, value = "/del/{id}")
+    public void deletByVisit(@PathVariable("id") int id) {
+        responseService.deleteBYVisit(id);
+    }
 }

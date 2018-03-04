@@ -48,6 +48,6 @@ public class PatientService {
     }
 
     public Patient editPatient(Patient patient){
-        return patientRepository.save(patient);
+        return patientRepository.saveAndFlush(patient);
     }
 }

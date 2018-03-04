@@ -48,6 +48,6 @@ public class QuestionTypeService {
     }
 
     public QuestionType editQuestionType(QuestionType questionType){
-        return questionTypeRepository.save(questionType);
+        return questionTypeRepository.saveAndFlush(questionType);
     }
 }

@@ -49,6 +49,6 @@ public class AnswerService {
     }
 
     public Answer editAnswer(Answer answer){
-        return answerRepository.save(answer);
+        return answerRepository.saveAndFlush(answer);
     }
 }

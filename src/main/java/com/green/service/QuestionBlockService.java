@@ -49,6 +49,6 @@ public class QuestionBlockService {
     }
 
     public QuestionBlock editQuestionBlock(QuestionBlock questionBlock){
-        return questionBlockRepository.save(questionBlock);
+        return questionBlockRepository.saveAndFlush(questionBlock);
     }
 }

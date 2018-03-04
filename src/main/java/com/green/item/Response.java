@@ -25,10 +25,22 @@ public class Response {
     @JoinColumn(name="id_visit")
     private Visit visit;
 
+    @ManyToOne
+    @JoinColumn(name="id_question")
+    private Question question;
+
     private String textAnswer;
     private String dateAnswer;
 
     public Response() {
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
     public int getIdResponse() {
@@ -38,6 +50,10 @@ public class Response {
     public void setIdResponse(int idResponse) {
         this.idResponse = idResponse;
     }
+
+    /*public String getAnswer() {
+        return answer == null ? "" : Integer.toString(answer.getIdAnswer());
+    }*/
 
     public Answer getAnswer() {
         return answer;
@@ -55,6 +71,10 @@ public class Response {
         this.visit = visit;
     }
 
+    public void setVisitID(int id) {
+        this.visit = new Visit(id);
+        }
+
     public String getTextAnswer() {
         return textAnswer;
     }
@@ -69,5 +89,16 @@ public class Response {
 
     public void setDateAnswer(String dateAnswer) {
         this.dateAnswer = dateAnswer;
+    }
+
+    public String toString() {
+        return "Response{" +
+                "idResponse=" + idResponse +
+                ", answer=" + answer +
+                ", visit=" + visit +
+                ", question=" + question +
+                ", textAnswer='" + textAnswer + '\'' +
+                ", dateAnswer='" + dateAnswer + '\'' +
+                '}';
     }
 }

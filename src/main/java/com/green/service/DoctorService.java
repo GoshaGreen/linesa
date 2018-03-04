@@ -49,6 +49,6 @@ public class DoctorService {
     }
 
     public Doctor editDoctor(Doctor doctor){
-        return doctorRepository.save(doctor);
+        return doctorRepository.saveAndFlush(doctor);
     }
 }

@@ -18,7 +18,7 @@ public class Patient {
     @GeneratedValue
     private int idPatient;
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient", cascade = {CascadeType.ALL})
     @JsonIgnore
     private List<Visit> visits;
 

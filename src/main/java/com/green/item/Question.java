@@ -34,6 +34,10 @@ public class Question {
     @OneToMany(mappedBy = "question")
     private List<Answer> answers;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "question")
+    private List<Response> response;
+
     private String questionText;
 
     private boolean mandatory;
@@ -41,6 +45,13 @@ public class Question {
     public Question() {
     }
 
+    public List<Response> getResponse() {
+        return response;
+    }
+
+    public void setResponse(List<Response> response) {
+        this.response = response;
+    }
 
     public int getIdQuestion() {
         return idQuestion;

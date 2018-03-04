@@ -43,11 +43,20 @@ public class ResponseService {
         return null;
     }
 
+    public void deleteBYVisit(int id) {
+        List<Response> responses = responseRepository.findAll();
+        for (Response response: responses) {
+            if(response.getVisit().getIdVisit()==id){
+                deleteById(response.getIdResponse());
+        }
+        }
+    }
+
     public void deleteById(int id){
         responseRepository.delete(id);
     }
 
     public Response editResponse(Response response){
-        return responseRepository.save(response);
+        return responseRepository.saveAndFlush(response);
     }
 }

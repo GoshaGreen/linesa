@@ -48,6 +48,6 @@ public class VisitService {
     }
 
     public Visit editVisit(Visit visit){
-        return visitRepository.save(visit);
+        return visitRepository.saveAndFlush(visit);
     }
 }

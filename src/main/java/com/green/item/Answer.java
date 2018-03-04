@@ -17,7 +17,7 @@ public class Answer {
     @GeneratedValue
     private int idAnswer;
 
-    @JsonIgnore
+    // @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_question")
     private Question question;
@@ -49,8 +49,8 @@ public class Answer {
         this.idAnswer = idAnswer;
     }
 
-    public Question getQuestion() {
-        return question;
+    public int getQuestion() {
+        return question.getIdQuestion();
     }
 
     public void setQuestion(Question question) {

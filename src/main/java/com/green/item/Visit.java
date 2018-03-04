@@ -1,6 +1,7 @@
 package com.green.item;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -15,13 +16,14 @@ import java.util.List;
 public class Visit {
     @Id
     @GeneratedValue
+    @JsonView(Visit.class)
     private int idVisit;
 
     @ManyToOne
     @JoinColumn(name="id_doctor")
     private Doctor doctor;
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="id_patient")
     private Patient patient;
 
@@ -29,17 +31,43 @@ public class Visit {
     @JoinColumn(name = "id_questionnaire")
     private Questionnaire questionnaire;
 
-    @OneToMany(mappedBy = "visit")
+    @OneToMany(mappedBy = "visit", cascade = {CascadeType.ALL})
     private List<Response> responses;
 
+    @JsonView(Visit.class)
+    private String MainDisease;
+
+    @JsonView(Visit.class)
     private Date date;
+
+    @JsonView(Visit.class)
+    public String patientName() {
+        return patient == null ? "" : patient.getFirstName().substring(0,1) + ". " +
+                patient.getMiddleName().substring(0,1) + ". " +
+                patient.getLastName();
+    }
+
+
+    @JsonView(Visit.class)
+    public String doctorName() {
+        return doctor == null ? "" : doctor.getFirstName().substring(0,1) + ". " +
+                doctor.getMiddleName().substring(0,1) + ". " +
+                doctor.getLastName();
+    }
 
     public Visit() {
     }
 
-    public String getMainDisease() {
+    public Visit(int id) {
+        this.idVisit = id;
+    }
 
-        return "DESIzE: REpair ThiZ MeZod";
+    public String getMainDisease() {
+        return MainDisease;
+    }
+
+    public void setMainDisease(String mainDisease) {
+        MainDisease = mainDisease;
     }
 
     public int getIdVisit() {
@@ -88,6 +116,18 @@ public class Visit {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String toOrdinaryString() {
+        return "Visit{" +
+                "idVisit=" + idVisit +
+                ", doctor=" + doctor +
+                ", patient=" + patient +
+                ", questionnaire=" + questionnaire +
+                ", responses=" + responses +
+                ", MainDisease='" + MainDisease + '\'' +
+                ", date=" + date +
+                '}';
     }
 }
 

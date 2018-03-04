@@ -26,7 +26,7 @@ public class Doctor {
 
     private String MiddleName;
 
-    private  String LastName;
+    private String LastName;
 
     private String Degree;
 

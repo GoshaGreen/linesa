@@ -32,7 +32,7 @@ public class QuestionnaireService {
     }
 
     public Questionnaire oneById(int id){
-        return questionnaireRepository.SelectSmth(2).get(0);
+        return questionnaireRepository.getOne(id);
     }
 
     public Questionnaire getOne(int id){
@@ -52,6 +52,6 @@ public class QuestionnaireService {
     }
 
     public Questionnaire editQuestionnaire(Questionnaire questionnaire){
-        return questionnaireRepository.save(questionnaire);
+        return questionnaireRepository.saveAndFlush(questionnaire);
     }
 }
